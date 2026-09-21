@@ -64,6 +64,12 @@ function main() {
   } else {
     console.log(md);
   }
+
+  // Fail CI build if any high-severity ERROR is detected to block merge
+  if (errors.length > 0) {
+    console.error(`\n❌ Code Review Check Failed: Found ${errors.length} critical error(s) that must be resolved before merging.`);
+    process.exit(1);
+  }
 }
 
 main();
