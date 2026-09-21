@@ -20,8 +20,12 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  /* Opt out of parallel tests on CI. Locally, set TEST_WORKERS to control parallelism. */
+  workers: process.env.CI
+    ? 1
+    : process.env.TEST_WORKERS
+      ? parseInt(process.env.TEST_WORKERS)
+      : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI 
     ? [['html'], ['junit', { outputFile: 'test-results/junit.xml' }]]
