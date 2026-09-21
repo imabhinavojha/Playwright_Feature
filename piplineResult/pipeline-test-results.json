@@ -1,0 +1,1026 @@
+{
+  "repository": "imabhinavojha/Playwright_Feature",
+  "workflow": "playwright.yml",
+  "runNumber": 5,
+  "runId": 35574457899,
+  "runUrl": "https://github.com/imabhinavojha/Playwright_Feature/actions/runs/35574457899",
+  "status": "completed",
+  "conclusion": "failure",
+  "commit": {
+    "sha": "5796d678578306306f825eb13b3ec4d4f8f7d7c8",
+    "message": "Configure list reporter in CI to output individual test case names and status"
+  },
+  "summary": {
+    "total": 250,
+    "passed": 87,
+    "failed": 161,
+    "skipped": 2
+  },
+  "failed": [
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:232:3 › API Request Examples › Multiple API requests - Sequential operations"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:232:3 › API Request Examples › Multiple API requests - Sequential operations (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:232:3 › API Request Examples › Multiple API requests - Sequential operations (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:20:3 › 11.2 Accessibility Testing with axe-core › Testing Specific WCAG Criteria - Banking Form"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:48:3 › 11.2 Accessibility Testing with axe-core › Accessibility with Exclusions - Exclude Known Issues"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:20:3 › 11.2 Accessibility Testing with axe-core › Testing Specific WCAG Criteria - Banking Form (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:48:3 › 11.2 Accessibility Testing with axe-core › Accessibility with Exclusions - Exclude Known Issues (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:20:3 › 11.2 Accessibility Testing with axe-core › Testing Specific WCAG Criteria - Banking Form (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:48:3 › 11.2 Accessibility Testing with axe-core › Accessibility with Exclusions - Exclude Known Issues (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:92:3 › 11.2 Accessibility Testing with axe-core › WCAG 2.1 Level AA Compliance - Banking Standard"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:128:3 › 11.2 Accessibility Testing with axe-core › Critical WCAG Success Criteria - Banking Compliance"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:128:3 › 11.2 Accessibility Testing with axe-core › Critical WCAG Success Criteria - Banking Compliance (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:92:3 › 11.2 Accessibility Testing with axe-core › WCAG 2.1 Level AA Compliance - Banking Standard (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:128:3 › 11.2 Accessibility Testing with axe-core › Critical WCAG Success Criteria - Banking Compliance (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:92:3 › 11.2 Accessibility Testing with axe-core › WCAG 2.1 Level AA Compliance - Banking Standard (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:167:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Specific Page Section"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:187:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Multiple Pages"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:167:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Specific Page Section (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:187:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Multiple Pages (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:167:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Specific Page Section (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:187:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Multiple Pages (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:216:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - With Custom Options"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:243:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Report Violations in Detail"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/amazon-search-fixture.spec.js:4:3 › Amazon search using Playwright fixtures › go to amazon.in and search"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:216:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - With Custom Options (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:243:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Report Violations in Detail (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:216:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - With Custom Options (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:243:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Report Violations in Detail (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:285:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - CI/CD Integration Pattern"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:324:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Banking Transfer Form Example"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:324:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Banking Transfer Form Example (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:285:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - CI/CD Integration Pattern (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:324:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Banking Transfer Form Example (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:285:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - CI/CD Integration Pattern (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:364:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Exclude Third-Party Widgets"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:407:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Full Page Scan with All Rules"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:364:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Exclude Third-Party Widgets (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:407:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Full Page Scan with All Rules (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:364:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Exclude Third-Party Widgets (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:407:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Full Page Scan with All Rules (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:443:3 › 11.3 Banking Compliance & WCAG Standards › WCAG 2.1 Level AA - Complete Compliance Check"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:443:3 › 11.3 Banking Compliance & WCAG Standards › WCAG 2.1 Level AA - Complete Compliance Check (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:473:3 › 11.3 Banking Compliance & WCAG Standards › Critical WCAG Success Criteria - Individual Rule Testing"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:443:3 › 11.3 Banking Compliance & WCAG Standards › WCAG 2.1 Level AA - Complete Compliance Check (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:473:3 › 11.3 Banking Compliance & WCAG Standards › Critical WCAG Success Criteria - Individual Rule Testing (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/amazon-search-fixture.spec.js:4:3 › Amazon search using Playwright fixtures › go to amazon.in and search (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:473:3 › 11.3 Banking Compliance & WCAG Standards › Critical WCAG Success Criteria - Individual Rule Testing (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/context-examples.spec.js:29:3 › Browser Context Examples › Context permissions and geolocation"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/context-examples.spec.js:130:3 › Browser Context Examples › Context-level route mocking and request assertions"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/context-examples.spec.js:130:3 › Browser Context Examples › Context-level route mocking and request assertions (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/context-examples.spec.js:130:3 › Browser Context Examples › Context-level route mocking and request assertions (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/context-examples.spec.js:174:3 › Browser Context Examples › Context tracing and video setup"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/context-examples.spec.js:29:3 › Browser Context Examples › Context permissions and geolocation (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/context-examples.spec.js:174:3 › Browser Context Examples › Context tracing and video setup (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/context-examples.spec.js:174:3 › Browser Context Examples › Context tracing and video setup (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/context-examples.spec.js:29:3 › Browser Context Examples › Context permissions and geolocation (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/extended.spec.js:52:1 › Handling dialog"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/extended.spec.js:52:1 › Handling dialog (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/extended.spec.js:52:1 › Handling dialog (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:5:3 › Finding Elements - All Types › Finding Elements - Role-Based, Text-Based, Label-Based, Test ID, Actions, and Assertions"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:5:3 › Finding Elements - All Types › Finding Elements - Role-Based, Text-Based, Label-Based, Test ID, Actions, and Assertions (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:5:3 › Finding Elements - All Types › Finding Elements - Role-Based, Text-Based, Label-Based, Test ID, Actions, and Assertions (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/amazon-search-fixture.spec.js:4:3 › Amazon search using Playwright fixtures › go to amazon.in and search (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:201:3 › Finding Elements - All Types › Form Interactions - All Locator Types with Actions"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:201:3 › Finding Elements - All Types › Form Interactions - All Locator Types with Actions (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:118:3 › Finding Elements - All Types › Locator Strategy Priority - Best Practices"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:201:3 › Finding Elements - All Types › Form Interactions - All Locator Types with Actions (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:118:3 › Finding Elements - All Types › Locator Strategy Priority - Best Practices (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:255:3 › Finding Elements - All Types › 5.4 Multiple Elements - Count, First, Nth"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/extended.spec.js:29:1 › Iframe interaction and dropdown select example"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:118:3 › Finding Elements - All Types › Locator Strategy Priority - Best Practices (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:255:3 › Finding Elements - All Types › 5.4 Multiple Elements - Count, First, Nth (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:255:3 › Finding Elements - All Types › 5.4 Multiple Elements - Count, First, Nth (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/extended.spec.js:29:1 › Iframe interaction and dropdown select example (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:292:3 › Finding Elements - All Types › 6.1 Clicking - Simple, Double, Right Click, Modifiers"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:374:3 › Finding Elements - All Types › 6.3 Form Interactions - Checkbox, Radio, Dropdown Expanded"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/extended.spec.js:29:1 › Iframe interaction and dropdown select example (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:292:3 › Finding Elements - All Types › 6.1 Clicking - Simple, Double, Right Click, Modifiers (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:374:3 › Finding Elements - All Types › 6.3 Form Interactions - Checkbox, Radio, Dropdown Expanded (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:417:3 › Finding Elements - All Types › 6.5 Mouse Actions - Hover, Drag and Drop"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:292:3 › Finding Elements - All Types › 6.1 Clicking - Simple, Double, Right Click, Modifiers (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:374:3 › Finding Elements - All Types › 6.3 Form Interactions - Checkbox, Radio, Dropdown Expanded (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:499:3 › Finding Elements - All Types › 7.2 Page Assertions - URL and Title"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:499:3 › Finding Elements - All Types › 7.2 Page Assertions - URL and Title (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:417:3 › Finding Elements - All Types › 6.5 Mouse Actions - Hover, Drag and Drop (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:499:3 › Finding Elements - All Types › 7.2 Page Assertions - URL and Title (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:450:3 › Finding Elements - All Types › 6.6 Complete Form Example"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:586:3 › Finding Elements - All Types › 7.5 Text Content - Exact, Contains, Array Match"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:586:3 › Finding Elements - All Types › 7.5 Text Content - Exact, Contains, Array Match (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:586:3 › Finding Elements - All Types › 7.5 Text Content - Exact, Contains, Array Match (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:417:3 › Finding Elements - All Types › 6.5 Mouse Actions - Hover, Drag and Drop (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:653:3 › Finding Elements - All Types › 7.7 Attributes - Attribute and Class Assertions"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:653:3 › Finding Elements - All Types › 7.7 Attributes - Attribute and Class Assertions (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:450:3 › Finding Elements - All Types › 6.6 Complete Form Example (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:653:3 › Finding Elements - All Types › 7.7 Attributes - Attribute and Class Assertions (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:747:3 › Finding Elements - All Types › 7.10 Custom Timeout - Assertion Timeouts"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:747:3 › Finding Elements - All Types › 7.10 Custom Timeout - Assertion Timeouts (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:627:3 › Finding Elements - All Types › 7.6 Input Values - Value Assertions"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:747:3 › Finding Elements - All Types › 7.10 Custom Timeout - Assertion Timeouts (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/graphql-api.spec.js:479:3 › GraphQL API Testing › GraphQL query - Batch queries"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/graphql-api.spec.js:479:3 › GraphQL API Testing › GraphQL query - Batch queries (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/graphql-api.spec.js:479:3 › GraphQL API Testing › GraphQL query - Batch queries (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:72:3 › API Interceptor Examples › Intercept GET request and mock response"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:72:3 › API Interceptor Examples › Intercept GET request and mock response (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:450:3 › Finding Elements - All Types › 6.6 Complete Form Example (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:72:3 › API Interceptor Examples › Intercept GET request and mock response (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:111:3 › API Interceptor Examples › Intercept POST request and validate payload"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:627:3 › Finding Elements - All Types › 7.6 Input Values - Value Assertions (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:211:3 › API Interceptor Examples › Intercept and add/modify response headers"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:111:3 › API Interceptor Examples › Intercept POST request and validate payload (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:211:3 › API Interceptor Examples › Intercept and add/modify response headers (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:111:3 › API Interceptor Examples › Intercept POST request and validate payload (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:211:3 › API Interceptor Examples › Intercept and add/modify response headers (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:717:3 › Ajio Orders Mock Implementation › Mock Ajio Orders API - Using request context with browser"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:717:3 › Ajio Orders Mock Implementation › Mock Ajio Orders API - Using request context with browser (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:717:3 › Ajio Orders Mock Implementation › Mock Ajio Orders API - Using request context with browser (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:627:3 › Finding Elements - All Types › 7.6 Input Values - Value Assertions (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:43:3 › Page Object Model & Component Object Model Examples › 8.2 Component Object Model - Using Header Component"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:43:3 › Page Object Model & Component Object Model Examples › 8.2 Component Object Model - Using Header Component (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:43:3 › Page Object Model & Component Object Model Examples › 8.2 Component Object Model - Using Header Component (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:10:3 › Page Object Model & Component Object Model Examples › 8.1 Traditional Page Object Pattern - Login Test"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:25:3 › Page Object Model & Component Object Model Examples › 8.1 Traditional Page Object - Login with Error Handling"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:75:3 › Page Object Model & Component Object Model Examples › 8.2 Component Objects in Page Objects - Dashboard with Header"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:10:3 › Page Object Model & Component Object Model Examples › 8.1 Traditional Page Object Pattern - Login Test (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:25:3 › Page Object Model & Component Object Model Examples › 8.1 Traditional Page Object - Login with Error Handling (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:75:3 › Page Object Model & Component Object Model Examples › 8.2 Component Objects in Page Objects - Dashboard with Header (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:10:3 › Page Object Model & Component Object Model Examples › 8.1 Traditional Page Object Pattern - Login Test (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:25:3 › Page Object Model & Component Object Model Examples › 8.1 Traditional Page Object - Login with Error Handling (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:75:3 › Page Object Model & Component Object Model Examples › 8.2 Component Objects in Page Objects - Dashboard with Header (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/searchGoogle.spec.js:29:1 › Handle list of elements"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/searchGoogle.spec.js:29:1 › Handle list of elements (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/searchGoogle.spec.js:29:1 › Handle list of elements (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:135:3 › Page Object Model & Component Object Model Examples › 8.3 Component Reusability - Multiple Pages Using Same Component"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:116:3 › Page Object Model & Component Object Model Examples › 8.3 Complete Flow - Login, Navigate, Use Components"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/seed.spec.ts:50:5 › login to JCI Solution portal"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:135:3 › Page Object Model & Component Object Model Examples › 8.3 Component Reusability - Multiple Pages Using Same Component (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:116:3 › Page Object Model & Component Object Model Examples › 8.3 Complete Flow - Login, Navigate, Use Components (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:116:3 › Page Object Model & Component Object Model Examples › 8.3 Complete Flow - Login, Navigate, Use Components (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:135:3 › Page Object Model & Component Object Model Examples › 8.3 Component Reusability - Multiple Pages Using Same Component (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:5:3 › 11.1 Visual Regression Testing › Basic Screenshot Comparison - Homepage"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/seed.spec.ts:50:5 › login to JCI Solution portal (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:12:3 › 11.1 Visual Regression Testing › Element Screenshot - Header"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:30:3 › 11.1 Visual Regression Testing › Advanced Configuration - Dashboard with Masking"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:30:3 › 11.1 Visual Regression Testing › Advanced Configuration - Dashboard with Masking (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:21:3 › 11.1 Visual Regression Testing › Full Page Screenshot"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:30:3 › 11.1 Visual Regression Testing › Advanced Configuration - Dashboard with Masking (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:55:3 › 11.1 Visual Regression Testing › Screenshot with Custom Threshold"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:64:3 › 11.1 Visual Regression Testing › Screenshot with Specific Region"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:93:3 › 11.1 Visual Regression Testing › Screenshot with Animation Disabled"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:75:3 › 11.1 Visual Regression Testing › Responsive Visual Testing - Multiple Viewports"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:101:3 › 11.1 Visual Regression Testing › Screenshot with Caret Hidden"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:121:3 › 11.1 Visual Regression Testing › Multiple Element Screenshots"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:112:3 › 11.1 Visual Regression Testing › Screenshot with Custom Styles Applied"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:121:3 › 11.1 Visual Regression Testing › Multiple Element Screenshots (retry #1)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:135:3 › 11.1 Visual Regression Testing › Screenshot Before and After Action"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:121:3 › 11.1 Visual Regression Testing › Multiple Element Screenshots (retry #2)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:155:3 › 11.1 Visual Regression Testing › Screenshot with Wait for Stability"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:388:3 › Visual Regression - Best Practices › Screenshot with Retry Logic"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:398:3 › Visual Regression - Best Practices › Screenshot Comparison - Before Update"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:407:3 › Visual Regression - Best Practices › Screenshot - Multiple Browsers"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/seed.spec.ts:50:5 › login to JCI Solution portal (retry #2)"
+    }
+  ],
+  "passed": [
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:9:3 › API Request Examples › GET request - Fetch single resource"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:28:3 › API Request Examples › GET request - Fetch list of resources"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:43:3 › API Request Examples › GET request - With query parameters"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:61:3 › API Request Examples › GET request - Response time assertion"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:72:3 › API Request Examples › POST request - Create new resource"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:113:3 › API Request Examples › PUT request - Update entire resource"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:133:3 › API Request Examples › PATCH request - Partial update"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:95:3 › API Request Examples › POST request - With custom headers"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:150:3 › API Request Examples › DELETE request - Remove resource"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:157:3 › API Request Examples › GET request - Handle 404 Not Found"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:164:3 › API Request Examples › POST request - Handle validation errors"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:182:3 › API Request Examples › Response body - Complex JSON structure validation"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:199:3 › API Request Examples › Response headers - Multiple header assertions"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:213:3 › API Request Examples › API request - Verify request payload"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:274:3 › API Request Examples › Response structure - Validate all required fields exist"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:291:3 › API Request Examples › Request timeout handling"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/api-requests.spec.js:266:3 › API Request Examples › Response status - Success range (2xx)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:67:3 › 11.2 Accessibility Testing with axe-core › WCAG 2.1 Level A Compliance"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/axe-core-accessibility.spec.js:384:3 › 11.2 Accessibility Testing with axe-core › Accessibility Test - Disable Specific Rules Temporarily"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/broken-link.spec.js:4:5 › Check broken links"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/context-examples.spec.js:10:3 › Browser Context Examples › Isolated context per user session"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/broken-link.spec.js:27:5 › Broken link validation"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/context-examples.spec.js:49:3 › Browser Context Examples › Context cookies and storage state"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/context-examples.spec.js:70:3 › Browser Context Examples › Multi-page handling inside one context"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/context-examples.spec.js:87:3 › Browser Context Examples › Context events: page, request, console, web error"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/context-examples.spec.js:188:3 › Browser Context Examples › Context emulate network conditions"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/context-examples.spec.js:210:3 › Browser Context Examples › Context-level storage cleanup"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/extended.spec.js:5:1 › API GET request"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/extended.spec.js:14:1 › Homepage loads with correct title"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/extended.spec.js:20:1 › File upload example"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/extended.spec.js:67:1 › Handling new tabs/windows"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/extended.spec.js:78:1 › New tab using context.pages()"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/extended.spec.js:91:1 › Navigation operations"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/extended.spec.js:101:1 › Take a screenshot"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/extended.spec.js:108:1 › Browser Context"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/extended.spec.js:136:1 › context events"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/extended.spec.js:159:1 › Mobile Hindi user"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:150:3 › Finding Elements - All Types › Advanced Locator Techniques - Chaining and Filtering"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:326:3 › Finding Elements - All Types › 6.2 Typing - Fill, Type, Keyboard Press"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:482:3 › Finding Elements - All Types › 7.1 Auto-Retrying Assertions"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:527:3 › Finding Elements - All Types › 7.3 Element Visibility - Visible, Hidden, Not Visible"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:552:3 › Finding Elements - All Types › 7.4 Element State - Enabled, Disabled, Checked"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:690:3 › Finding Elements - All Types › 7.8 Count - Element Count Assertions"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/finding-elements.spec.js:720:3 › Finding Elements - All Types › 7.9 Screenshots - Page and Element Screenshots"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/graphql-api.spec.js:9:3 › GraphQL API Testing › 10.2 GraphQL query - Basic query with variables"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/graphql-api.spec.js:60:3 › GraphQL API Testing › GraphQL query - Simple query without variables"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/graphql-api.spec.js:92:3 › GraphQL API Testing › GraphQL query - Nested query with multiple levels"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/graphql-api.spec.js:130:3 › GraphQL API Testing › GraphQL query - Query with aliases"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/graphql-api.spec.js:167:3 › GraphQL API Testing › GraphQL query - Query with fragments"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/graphql-api.spec.js:202:3 › GraphQL API Testing › GraphQL mutation - Create operation example"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/graphql-api.spec.js:248:3 › GraphQL API Testing › GraphQL query - Error handling"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/graphql-api.spec.js:275:3 › GraphQL API Testing › GraphQL query - Invalid variable type"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/graphql-api.spec.js:303:3 › GraphQL API Testing › GraphQL query - Multiple queries in sequence"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/graphql-api.spec.js:348:3 › GraphQL API Testing › GraphQL query - With custom headers and authentication"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/graphql-api.spec.js:372:3 › GraphQL API Testing › GraphQL query - Response time and performance"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/graphql-api.spec.js:402:3 › GraphQL API Testing › GraphQL query - Validate response structure"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/graphql-api.spec.js:451:3 › GraphQL API Testing › GraphQL query - Using GET method (if supported)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:5:3 › API Interceptor Examples › Mock Login API without external website"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:164:3 › API Interceptor Examples › Intercept with conditional logic based on request data"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:244:3 › API Interceptor Examples › Intercept multiple endpoints with different responses"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:287:3 › API Interceptor Examples › Intercept and validate request headers"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:372:3 › API Interceptor Examples › Intercept DELETE request and mock deletion response"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:330:3 › API Interceptor Examples › Intercept PUT request and mock update response"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:442:3 › API Interceptor Examples › Intercept and return error responses"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:404:3 › API Interceptor Examples › Intercept and add latency to response"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:479:3 › API Interceptor Examples › Intercept using URL pattern matching"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:508:3 › API Interceptor Examples › Unroute to remove interceptor"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:541:3 › API Interceptor Examples › Intercept, modify request, then continue"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:593:3 › Ajio Orders Mock Implementation › Mock Ajio Orders API - POST /ajio/orders with FastAPI-like response"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/interceptor-examples.spec.js:789:3 › Ajio Orders Mock Implementation › Mock Ajio Orders API - With authentication headers"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/parllel-tetsting.spec.js:5:7 › Parallel Suite › Test A"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/parllel-tetsting.spec.js:9:7 › Parallel Suite › Test B"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:58:3 › Page Object Model & Component Object Model Examples › 8.2 Component Object Model - Using Footer Component"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:96:3 › Page Object Model & Component Object Model Examples › 8.3 Reusable Component Architecture - ProductPage extends BasePage"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:156:3 › Page Object Model & Component Object Model Examples › 8.3 BasePage Pattern - Inheritance Example"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/pom-com-examples.spec.js:178:3 › Page Object Model & Component Object Model Examples › 8.3 Enterprise Pattern - Component Update Benefits"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/test-healing.spec.js:91:3 › Self-Healing Test Demonstration › Playwright Native Resiliency (Built-in Healing)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/test-healing.spec.js:45:3 › Self-Healing Test Demonstration › Demonstrate Self-Healing with Fallback Selectors"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:170:3 › 11.2 Accessibility Testing with axe-core › Basic Accessibility Test - Install axe-core first"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:226:3 › 11.2 Accessibility Testing with axe-core › Accessibility - Keyboard Navigation"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:270:3 › 11.2 Accessibility Testing with axe-core › Accessibility - Color Contrast (Basic Check)"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:251:3 › 11.2 Accessibility Testing with axe-core › Accessibility - ARIA Attributes"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:291:3 › 11.2 Accessibility Testing with axe-core › Accessibility - Form Validation Messages"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:313:3 › 11.2 Accessibility Testing with axe-core › Accessibility - Skip Links"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:324:3 › 11.2 Accessibility Testing with axe-core › Accessibility - Semantic HTML"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:346:3 › 11.2 Accessibility Testing with axe-core › Accessibility - Screen Reader Compatibility"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/visual-regression-accessibility.spec.js:371:3 › 11.2 Accessibility Testing with axe-core › Accessibility - Focus Management"
+    }
+  ],
+  "skipped": [
+    {
+      "browser": "chromium",
+      "test": "e2e/searchGoogle.spec.js:3:6 › Brave 1"
+    },
+    {
+      "browser": "chromium",
+      "test": "e2e/searchGoogle.spec.js:11:6 › Brave 2"
+    }
+  ],
+  "extractedAt": "2026-09-21T07:57:36.343Z"
+}
