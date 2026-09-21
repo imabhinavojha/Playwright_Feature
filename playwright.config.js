@@ -27,8 +27,8 @@ export default defineConfig({
       ? parseInt(process.env.TEST_WORKERS)
       : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: process.env.CI 
-    ? [['html'], ['junit', { outputFile: 'test-results/junit.xml' }]]
+  reporter: process.env.CI
+    ? [['list'], ['junit', { outputFile: 'test-results/junit.xml' }], ['html', { open: 'never' }]]
     : 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
