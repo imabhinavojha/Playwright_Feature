@@ -179,22 +179,32 @@ function processReport(report) {
 }
 
 function main() {
-  const jsonPath = path.resolve(__dirname, '..', 'test-results', 'report.json', '.last-run.json');
-  if (!fs.existsSync(jsonPath)) {
-    // Fallback: look for any JSON file in the report.json directory
-    const reportDir = path.resolve(__dirname, '..', 'test-results', 'report.json');
-    if (fs.existsSync(reportDir)) {
-      const files = fs.readdirSync(reportDir);
-      const jsonFile = files.find(f => f.endsWith('.json'));
-      if (jsonFile) {
-        const jsonPath = path.resolve(reportDir, jsonFile);
-        const rawData = fs.readFileSync(jsonPath, 'utf8');
-        const report = JSON.parse(rawData);
-        processReport(report);
-        return;
+  const reportPath = path.resolve(__dirname, '..', 'test-results', 'report.json');
+  let jsonPath = null;
+
+  // Check if reportPath exists
+  if (fs.existsSync(reportPath)) {
+    const stat = fs.statSync(reportPath);
+    if (stat.isFile()) {
+      jsonPath = reportPath;
+    } else if (stat.isDirectory()) {
+      // It's a directory, look for .last-run.json inside
+      const lastRunPath = path.join(reportPath, '.last-run.json');
+      if (fs.existsSync(lastRunPath)) {
+        jsonPath = lastRunPath;
+      } else {
+        // Look for any JSON file in the directory
+        const files = fs.readdirSync(reportPath);
+        const jsonFile = files.find(f => f.endsWith('.json'));
+        if (jsonFile) {
+          jsonPath = path.join(reportPath, jsonFile);
+        }
       }
     }
-    console.log(`⚠️ JSON report not found at: ${jsonPath}`);
+  }
+
+  if (!jsonPath) {
+    console.log(`⚠️ JSON report not found at: ${reportPath}`);
     return;
   }
 
