@@ -1,0 +1,44 @@
+name: Automated Code Review
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+jobs:
+  code-review:
+    name: Code Quality & Security Review
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Playwright tests
+        run: npx playwright test --reporter=json --output=test-results/
+
+      - name: Install Semgrep (Offline, No API Key Required)
+        run: |
+          python3 -m pip install semgrep
+
+      - name: Run Semgrep Static Code Analysis
+        run: |
+          semgrep scan --config auto --json -o semgrep-results.json || true
+
+      - name: Generate Code Review Summary
+        if: ${{ !cancelled() }}
+        run: |
+          node scripts/generate-review-summary.js

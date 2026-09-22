@@ -1,0 +1,86 @@
+rules:
+  - id: playwright-no-wait-for-timeout
+    patterns:
+      - pattern: $PAGE.waitForTimeout(...)
+    message: "❌ Avoid using `page.waitForTimeout()` in Playwright. Arbitrary sleep causes test flakiness. Use web-first assertions or locator auto-waiting instead."
+    languages: [javascript, typescript]
+    severity: ERROR
+
+  - id: playwright-missing-await-action
+    patterns:
+      - pattern-not-inside: await ...
+      - pattern-either:
+          - pattern: $PAGE.goto(...)
+          - pattern: $PAGE.click(...)
+          - pattern: $PAGE.fill(...)
+          - pattern: $PAGE.type(...)
+          - pattern: $PAGE.press(...)
+          - pattern: $PAGE.check(...)
+          - pattern: $PAGE.uncheck(...)
+          - pattern: $PAGE.selectOption(...)
+          - pattern: $PAGE.screenshot(...)
+          - pattern: $PAGE.waitForURL(...)
+          - pattern: $PAGE.waitForSelector(...)
+          - pattern: $LOCATOR.click(...)
+          - pattern: $LOCATOR.fill(...)
+          - pattern: $LOCATOR.type(...)
+          - pattern: $LOCATOR.press(...)
+          - pattern: $LOCATOR.check(...)
+          - pattern: $LOCATOR.uncheck(...)
+    message: "❌ Playwright action is missing `await`. All page and locator interaction methods return Promises and MUST be awaited."
+    languages: [javascript, typescript]
+    severity: ERROR
+
+  - id: playwright-missing-await-expect
+    patterns:
+      - pattern-not-inside: await ...
+      - pattern-either:
+          - pattern: expect($LOCATOR).toBeVisible(...)
+          - pattern: expect($LOCATOR).toBeHidden(...)
+          - pattern: expect($LOCATOR).toBeEnabled(...)
+          - pattern: expect($LOCATOR).toBeDisabled(...)
+          - pattern: expect($LOCATOR).toHaveText(...)
+          - pattern: expect($LOCATOR).toContainText(...)
+          - pattern: expect($LOCATOR).toHaveValue(...)
+          - pattern: expect($LOCATOR).toHaveCount(...)
+          - pattern: expect($PAGE).toHaveURL(...)
+          - pattern: expect($PAGE).toHaveTitle(...)
+    message: "❌ Playwright assertion `expect(...)` is missing `await`. Web-first assertions are asynchronous and MUST be awaited."
+    languages: [javascript, typescript]
+    severity: ERROR
+
+  - id: playwright-disabling-security
+    patterns:
+      - pattern-either:
+          - pattern: "ignoreHTTPSErrors: true"
+          - pattern: "bypassCSP: true"
+    message: "❌ Disabling security controls (`ignoreHTTPSErrors: true` or `bypassCSP: true`) compromises test environment safety."
+    languages: [javascript, typescript]
+    severity: ERROR
+
+  - id: playwright-no-test-only
+    patterns:
+      - pattern: test.only(...)
+    message: "❌ `test.only` must not be pushed or committed as it skips all other test suites in CI."
+    languages: [javascript, typescript]
+    severity: ERROR
+
+  - id: hardcoded-secret-in-test
+    patterns:
+      - pattern-either:
+          - pattern: const $VAR = "..."
+          - pattern: let $VAR = "..."
+          - pattern: var $VAR = "..."
+      - metavariable-regex:
+          metavariable: $VAR
+          regex: (?i)^(password|user_password|secret|api_key|apiKey|auth_token|authToken|access_token|private_key)$
+    message: "❌ Hardcoded credential or secret detected. Use environment variables (e.g. `process.env.USER_PASSWORD`) instead."
+    languages: [javascript, typescript]
+    severity: ERROR
+
+  - id: dangerous-eval
+    patterns:
+      - pattern: eval(...)
+    message: "❌ Usage of `eval()` detected. Avoid dynamic code execution due to injection vulnerabilities."
+    languages: [javascript, typescript]
+    severity: ERROR
