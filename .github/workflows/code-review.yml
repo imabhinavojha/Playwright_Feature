@@ -24,6 +24,20 @@ jobs:
         with:
           node-version: lts/*
 
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Playwright tests
+        run: npx playwright test --reporter=json --output=test-results/
+
+      - name: Get test pass/fail counts
+        id: testcounts
+        run: |
+          PASSED=$(node -p "require('./test-results/test-results.json').stats.passed")
+          FAILED=$(node -p "require('./test-results/test-results.json').stats.failed")
+          echo "passed=$PASSED" >> $GITHUB_OUTPUT
+          echo "failed=$FAILED" >> $GITHUB_OUTPUT
+
       - name: Install Semgrep (Offline, No API Key Required)
         run: |
           python3 -m pip install semgrep
@@ -33,6 +47,9 @@ jobs:
           semgrep scan --config auto --json -o semgrep-results.json || true
 
       - name: Generate Code Review Summary
+        env:
+          TEST_PASS: ${{ steps.testcounts.outputs.passed }}
+          TEST_FAIL: ${{ steps.testcounts.outputs.failed }}
         if: ${{ !cancelled() }}
         run: |
           node scripts/generate-review-summary.js

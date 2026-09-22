@@ -27,6 +27,10 @@ function main() {
   const warnings = results.filter(r => r.extra?.severity === 'WARNING');
   const infos = results.filter(r => r.extra?.severity === 'INFO');
 
+  // Test pass/fail from env vars (set by prior test job)
+  const testPass = parseInt(process.env.TEST_PASS || '0', 10);
+  const testFail = parseInt(process.env.TEST_FAIL || '0', 10);
+
   let md = '';
   md += `## 🛡️ Automated Code Quality & Security Review\n\n`;
 
@@ -34,6 +38,34 @@ function main() {
   md += `| Total Issues | 🔴 Errors | 🟡 Warnings | 🔵 Best Practices / Info |\n`;
   md += `| :---: | :---: | :---: | :---: |\n`;
   md += `| **${results.length}** | **${errors.length}** | **${warnings.length}** | **${infos.length}** |\n\n`;
+
+  // Test Results Donut Chart
+  if (testPass + testFail > 0) {
+    md += `### 📊 Test Results\n\n`;
+    md += `<div id="test-chart-container" style="width:200px;height:200px;"></div>\n`;
+    md += `<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>\n`;
+    md += `<script>\n`;
+    md += `  const ctx = document.getElementById('test-chart-container');\n`;
+    md += `  new Chart(ctx, {\n`;
+    md += `    type: 'doughnut',\n`;
+    md += `    data: {\n`;
+    md += `      labels: ['Passed', 'Failed'],\n`;
+    md += `      datasets: [{\n`;
+    md += `        data: [${testPass}, ${testFail}],\n`;
+    md += `        backgroundColor: ['#28a745', '#dc3545'],\n`;
+    md += `        borderWidth: 0\n`;
+    md += `      }]\n`;
+    md += `    },\n`;
+    md += `    options: {\n`;
+    md += `      responsive: true,\n`;
+    md += `      plugins: {\n`;
+    md += `        legend: { position: 'bottom' },\n`;
+    md += `        tooltip: { enabled: true }\n`;
+    md += `      }\n`;
+    md += `    }\n`;
+    md += `  });\n`;
+    md += `</script>\n\n`;
+  }
 
   if (results.length === 0) {
     md += `> ✅ **Clean Code!** No security vulnerabilities or anti-patterns detected in the changed files.\n\n`;
