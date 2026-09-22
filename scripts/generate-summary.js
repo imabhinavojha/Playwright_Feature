@@ -91,32 +91,24 @@ function processReport(report) {
   md += `| :---: | :---: | :---: | :---: | :---: | :---: |\n`;
   md += `| **${totalTests}** | **${results.passed.length}** | **${results.failed.length}** | **${results.flaky.length}** | **${results.skipped.length}** | **${duration}** |\n\n`;
 
-  // Add donut chart for test outcomes
+  // Add donut chart for test outcomes using quickchart.io
   if (results.passed.length + results.failed.length + results.flaky.length + results.skipped.length > 0) {
     md += `### 📊 Test Outcome Distribution\n\n`;
-    md += `<div id="test-chart-container" style="width:200px;height:200px;"></div>\n`;
-    md += `<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>\n`;
-    md += `<script>\n`;
-    md += `  const ctx = document.getElementById('test-chart-container');\n`;
-    md += `  new Chart(ctx, {\n`;
-    md += `    type: 'doughnut',\n`;
-    md += `    data: {\n`;
-    md += `      labels: ['Passed 🟢', 'Failed ❌', 'Flaky ⚠️', 'Skipped ⏭️'],\n`;
-    md += `      datasets: [{\n`;
-    md += `        data: [${results.passed.length}, ${results.failed.length}, ${results.flaky.length}, ${results.skipped.length}],\n`;
-    md += `        backgroundColor: ['#28a745', '#dc3545', '#ffc107', '#6c757d'],\n`;
-    md += `        borderWidth: 0\n`;
-    md += `      }]\n`;
-    md += `    },\n`;
-    md += `    options: {\n`;
-    md += `      responsive: true,\n`;
-    md += `      plugins: {\n`;
-    md += `        legend: { position: 'bottom' },\n`;
-    md += `        tooltip: { enabled: true }\n`;
-    md += `      }\n`;
-    md += `    }\n`;
-    md += `  });\n`;
-    md += `</script>\n\n`;
+    md += `![Test Outcome Distribution](https://quickchart.io/chart?c=${encodeURIComponent(JSON.stringify({
+      type: 'doughnut',
+      data: {
+        labels: ['Passed 🟢', 'Failed ❌', 'Flaky ⚠️', 'Skipped ⏭️'],
+        datasets: [{
+          data: [results.passed.length, results.failed.length, results.flaky.length, results.skipped.length],
+          backgroundColor: ['#28a745', '#dc3545', '#ffc107', '#6c757d']
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { position: 'bottom' }
+        }
+      }
+    }))})\n\n`;
   }
 
   // 2. Failed Tests (Open by default)
@@ -179,32 +171,53 @@ function processReport(report) {
 }
 
 function main() {
-  const reportPath = path.resolve(__dirname, '..', 'test-results', 'report.json');
+  // Try multiple possible report locations
+  const possiblePaths = [
+    path.resolve(__dirname, '..', 'test-results', 'report.json'),
+    path.resolve(__dirname, '..', 'test-results', 'report.json', '.last-run.json'),
+    path.resolve(__dirname, '..', 'test-results', 'actual-report.json'),
+    path.resolve(__dirname, '..', 'test-results', 'actual-report.json', '.last-run.json'),
+    path.resolve(__dirname, '..', 'test-results')
+  ];
+
   let jsonPath = null;
 
-  // Check if reportPath exists
-  if (fs.existsSync(reportPath)) {
-    const stat = fs.statSync(reportPath);
-    if (stat.isFile()) {
-      jsonPath = reportPath;
-    } else if (stat.isDirectory()) {
-      // It's a directory, look for .last-run.json inside
-      const lastRunPath = path.join(reportPath, '.last-run.json');
-      if (fs.existsSync(lastRunPath)) {
-        jsonPath = lastRunPath;
-      } else {
-        // Look for any JSON file in the directory
-        const files = fs.readdirSync(reportPath);
-        const jsonFile = files.find(f => f.endsWith('.json'));
-        if (jsonFile) {
-          jsonPath = path.join(reportPath, jsonFile);
+  for (const reportPath of possiblePaths) {
+    if (fs.existsSync(reportPath)) {
+      const stat = fs.statSync(reportPath);
+      if (stat.isFile()) {
+        jsonPath = reportPath;
+        break;
+      } else if (stat.isDirectory()) {
+        // It's a directory, look for .last-run.json inside
+        const lastRunPath = path.join(reportPath, '.last-run.json');
+        if (fs.existsSync(lastRunPath)) {
+          jsonPath = lastRunPath;
+          break;
+        } else {
+          // Look for any JSON file in the directory
+          try {
+            const files = fs.readdirSync(reportPath);
+            const jsonFile = files.find(f => f.endsWith('.json'));
+            if (jsonFile) {
+              jsonPath = path.join(reportPath, jsonFile);
+              break;
+            }
+          } catch (e) {
+            // Continue to next path
+          }
         }
       }
     }
   }
 
   if (!jsonPath) {
-    console.log(`⚠️ JSON report not found at: ${reportPath}`);
+    console.log(`⚠️ JSON report not found in any of the expected locations:`);
+    console.log(`  - test-results/report.json`);
+    console.log(`  - test-results/report.json/.last-run.json`);
+    console.log(`  - test-results/actual-report.json`);
+    console.log(`  - test-results/actual-report.json/.last-run.json`);
+    console.log(`  - test-results/ (directory)`);
     return;
   }
 
