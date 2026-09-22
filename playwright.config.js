@@ -21,11 +21,7 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Use 3 workers in CI. Locally, set TEST_WORKERS to control parallelism. */
-  workers: process.env.CI
-    ? 3
-    : process.env.TEST_WORKERS
-      ? parseInt(process.env.TEST_WORKERS)
-      : undefined,
+  workers: process.env.CI ? 3 : process.env.TEST_WORKERS ? parseInt(process.env.TEST_WORKERS) : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
     ? [

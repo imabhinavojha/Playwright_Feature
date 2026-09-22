@@ -77,16 +77,7 @@ function parseSuites(suites, parentTitle = '', results = { passed: [], failed: [
   return results;
 }
 
-function main() {
-  const jsonPath = path.resolve(__dirname, '..', 'test-results', 'report.json');
-  if (!fs.existsSync(jsonPath)) {
-    console.log(`⚠️ JSON report not found at: ${jsonPath}`);
-    return;
-  }
-
-  const rawData = fs.readFileSync(jsonPath, 'utf8');
-  const report = JSON.parse(rawData);
-
+function processReport(report) {
   const results = parseSuites(report.suites || []);
   const stats = report.stats || {};
   const totalTests = results.passed.length + results.failed.length + results.flaky.length + results.skipped.length;
@@ -99,6 +90,34 @@ function main() {
   md += `| Total Tests | Passed 🟢 | Failed ❌ | Flaky ⚠️ | Skipped ⏭️ | Total Duration ⏱️ |\n`;
   md += `| :---: | :---: | :---: | :---: | :---: | :---: |\n`;
   md += `| **${totalTests}** | **${results.passed.length}** | **${results.failed.length}** | **${results.flaky.length}** | **${results.skipped.length}** | **${duration}** |\n\n`;
+
+  // Add donut chart for test outcomes
+  if (results.passed.length + results.failed.length + results.flaky.length + results.skipped.length > 0) {
+    md += `### 📊 Test Outcome Distribution\n\n`;
+    md += `<div id="test-chart-container" style="width:200px;height:200px;"></div>\n`;
+    md += `<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>\n`;
+    md += `<script>\n`;
+    md += `  const ctx = document.getElementById('test-chart-container');\n`;
+    md += `  new Chart(ctx, {\n`;
+    md += `    type: 'doughnut',\n`;
+    md += `    data: {\n`;
+    md += `      labels: ['Passed 🟢', 'Failed ❌', 'Flaky ⚠️', 'Skipped ⏭️'],\n`;
+    md += `      datasets: [{\n`;
+    md += `        data: [${results.passed.length}, ${results.failed.length}, ${results.flaky.length}, ${results.skipped.length}],\n`;
+    md += `        backgroundColor: ['#28a745', '#dc3545', '#ffc107', '#6c757d'],\n`;
+    md += `        borderWidth: 0\n`;
+    md += `      }]\n`;
+    md += `    },\n`;
+    md += `    options: {\n`;
+    md += `      responsive: true,\n`;
+    md += `      plugins: {\n`;
+    md += `        legend: { position: 'bottom' },\n`;
+    md += `        tooltip: { enabled: true }\n`;
+    md += `      }\n`;
+    md += `    }\n`;
+    md += `  });\n`;
+    md += `</script>\n\n`;
+  }
 
   // 2. Failed Tests (Open by default)
   if (results.failed.length > 0) {
@@ -157,6 +176,31 @@ function main() {
     console.log('\n--- Generated Markdown Summary ---\n');
     console.log(md);
   }
+}
+
+function main() {
+  const jsonPath = path.resolve(__dirname, '..', 'test-results', 'report.json', '.last-run.json');
+  if (!fs.existsSync(jsonPath)) {
+    // Fallback: look for any JSON file in the report.json directory
+    const reportDir = path.resolve(__dirname, '..', 'test-results', 'report.json');
+    if (fs.existsSync(reportDir)) {
+      const files = fs.readdirSync(reportDir);
+      const jsonFile = files.find(f => f.endsWith('.json'));
+      if (jsonFile) {
+        const jsonPath = path.resolve(reportDir, jsonFile);
+        const rawData = fs.readFileSync(jsonPath, 'utf8');
+        const report = JSON.parse(rawData);
+        processReport(report);
+        return;
+      }
+    }
+    console.log(`⚠️ JSON report not found at: ${jsonPath}`);
+    return;
+  }
+
+  const rawData = fs.readFileSync(jsonPath, 'utf8');
+  const report = JSON.parse(rawData);
+  processReport(report);
 }
 
 main();
