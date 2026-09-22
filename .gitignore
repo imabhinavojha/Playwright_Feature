@@ -9,3 +9,4 @@ test-results/
 /playwright/.auth/
 .DS_Store
 .DS_Store
+semgrep-results.json

@@ -7,6 +7,19 @@ function escapeMarkdown(text) {
   return text.replace(/\|/g, '\\|').replace(/\n/g, '<br>');
 }
 
+function formatDuration(ms) {
+  if (isNaN(ms)) return '';
+  const totalSec = Math.round(ms / 1000);
+  const hours = Math.floor(totalSec / 3600);
+  const minutes = Math.floor((totalSec % 3600) / 60);
+  const seconds = totalSec % 60;
+  const parts = [];
+  if (hours > 0) parts.push(`${hours}h`);
+  if (minutes > 0) parts.push(`${minutes}m`);
+  if (seconds > 0 || parts.length === 0) parts.push(`${seconds}s`);
+  return parts.join(' ');
+}
+
 function main() {
   const jsonPath = path.resolve(__dirname, '..', 'semgrep-results.json');
   if (!fs.existsSync(jsonPath)) {
@@ -27,9 +40,23 @@ function main() {
   const warnings = results.filter(r => r.extra?.severity === 'WARNING');
   const infos = results.filter(r => r.extra?.severity === 'INFO');
 
-  // Test pass/fail from env vars (set by prior test job)
-  const testPass = parseInt(process.env.TEST_PASS || '0', 10);
-  const testFail = parseInt(process.env.TEST_FAIL || '0', 10);
+  // Test stats from Playwright JSON report (if exists)
+  const testResultsPath = path.resolve(__dirname, '..', 'test-results', 'test-results.json');
+  let testStats = {};
+  if (fs.existsSync(testResultsPath)) {
+    try {
+      const testData = JSON.parse(fs.readFileSync(testResultsPath, 'utf8'));
+      testStats = testData.stats || {};
+    } catch (e) {
+      console.warn('Could not parse test-results.json:', e.message);
+    }
+  }
+  // Fallback to env vars
+  const testPass = parseInt(process.env.TEST_PASS || testStats.passed || '0', 10);
+  const testFail = parseInt(process.env.TEST_FAIL || testStats.failed || '0', 10);
+  const testFlaky = parseInt(process.env.TEST_FLAKY || testStats.flaky || '0', 10);
+  const testSkipped = parseInt(process.env.TEST_SKIPPED || testStats.skipped || '0', 10);
+  const testDuration = testStats.duration || 0;
 
   let md = '';
   md += `## 🛡️ Automated Code Quality & Security Review\n\n`;
@@ -39,32 +66,45 @@ function main() {
   md += `| :---: | :---: | :---: | :---: |\n`;
   md += `| **${results.length}** | **${errors.length}** | **${warnings.length}** | **${infos.length}** |\n\n`;
 
-  // Test Results Donut Chart
-  if (testPass + testFail > 0) {
-    md += `### 📊 Test Results\n\n`;
-    md += `<div id="test-chart-container" style="width:200px;height:200px;"></div>\n`;
-    md += `<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>\n`;
-    md += `<script>\n`;
-    md += `  const ctx = document.getElementById('test-chart-container');\n`;
-    md += `  new Chart(ctx, {\n`;
-    md += `    type: 'doughnut',\n`;
-    md += `    data: {\n`;
-    md += `      labels: ['Passed', 'Failed'],\n`;
-    md += `      datasets: [{\n`;
-    md += `        data: [${testPass}, ${testFail}],\n`;
-    md += `        backgroundColor: ['#28a745', '#dc3545'],\n`;
-    md += `        borderWidth: 0\n`;
-    md += `      }]\n`;
-    md += `    },\n`;
-    md += `    options: {\n`;
-    md += `      responsive: true,\n`;
-    md += `      plugins: {\n`;
-    md += `        legend: { position: 'bottom' },\n`;
-    md += `        tooltip: { enabled: true }\n`;
-    md += `      }\n`;
-    md += `    }\n`;
-    md += `  });\n`;
-    md += `</script>\n\n`;
+  // Test Execution Summary Table
+  if (testPass + testFail + testFlaky + testSkipped > 0) {
+    md += `### 🎭 Playwright Test Execution Summary\n\n`;
+    md += `| Metric | Value |\n`;
+    md += `| :--- | :--- |\n`;
+    md += `| Total Tests | **${testPass + testFail + testFlaky + testSkipped}** |\n`;
+    md += `| Passed 🟢 | **${testPass}** |\n`;
+    md += `| Failed ❌ | **${testFail}** |\n`;
+    md += `| Flaky ⚠️ | **${testFlaky}** |\n`;
+    md += `| Skipped ⏭️ | **${testSkipped}** |\n`;
+    md += `| Total Duration ⏱️ | **${formatDuration(testDuration)}** |\n\n`;
+
+    // Test Results Donut Chart (Passed vs Failed)
+    if (testPass + testFail > 0) {
+      md += `#### 📊 Test Outcome (Passed vs Failed)\n\n`;
+      md += `<div id="test-chart-container" style="width:200px;height:200px;"></div>\n`;
+      md += `<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>\n`;
+      md += `<script>\n`;
+      md += `  const ctx = document.getElementById('test-chart-container');\n`;
+      md += `  new Chart(ctx, {\n`;
+      md += `    type: 'doughnut',\n`;
+      md += `    data: {\n`;
+      md += `      labels: ['Passed', 'Failed'],\n`;
+      md += `      datasets: [{\n`;
+      md += `        data: [${testPass}, ${testFail}],\n`;
+      md += `        backgroundColor: ['#28a745', '#dc3545'],\n`;
+      md += `        borderWidth: 0\n`;
+      md += `      }]\n`;
+      md += `    },\n`;
+      md += `    options: {\n`;
+      md += `      responsive: true,\n`;
+      md += `      plugins: {\n`;
+      md += `        legend: { position: 'bottom' },\n`;
+      md += `        tooltip: { enabled: true }\n`;
+      md += `      }\n`;
+      md += `    }\n`;
+      md += `  });\n`;
+      md += `</script>\n\n`;
+    }
   }
 
   if (results.length === 0) {
