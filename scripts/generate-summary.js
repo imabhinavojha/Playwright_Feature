@@ -119,7 +119,7 @@ function processReport(report) {
         cutout: '65%'
       }
     };
-    md += `![Test Outcome Distribution](https://quickchart.io/chart?c=${encodeURIComponent(JSON.stringify(chartConfig))}&width=350&height=250)\n\n`;
+    md += `![Test Outcome Distribution](https://quickchart.io/chart?c=${encodeURIComponent(JSON.stringify(chartConfig))}&width=160&height=250)\n\n`;
   }
 
   // 2. Failed Tests (Open by default)
