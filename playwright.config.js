@@ -13,7 +13,7 @@ import { defineConfig, devices } from '@playwright/test';
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
-  testDir: './e2e',
+  testDir: './tests/e2e',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -21,11 +21,7 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Use 3 workers in CI. Locally, set TEST_WORKERS to control parallelism. */
-  workers: process.env.CI
-    ? 3
-    : process.env.TEST_WORKERS
-      ? parseInt(process.env.TEST_WORKERS)
-      : undefined,
+  workers: process.env.CI ? 3 : process.env.TEST_WORKERS ? parseInt(process.env.TEST_WORKERS) : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
     ? [
@@ -41,8 +37,8 @@ export default defineConfig({
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    /* Run headless in CI, headed locally if preferred */
-    headless: !!process.env.CI,
+    /* Run headless based on HEADLESS env (true/false) or fallback to CI */
+    headless: process.env.HEADLESS === 'true' ? true : process.env.HEADLESS === 'false' ? false : !!process.env.CI,
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',

@@ -1,9 +1,9 @@
 const { test, expect } = require('@playwright/test');
-const { LoginPage } = require('../pages/LoginPage');
-const { DashboardPage } = require('../pages/DashboardPage');
-const { ProductPage } = require('../pages/ProductPage');
-const { HeaderComponent } = require('../components/HeaderComponent');
-const { FooterComponent } = require('../components/FooterComponent');
+const { LoginPage } = require('../../pages/LoginPage');
+const { DashboardPage } = require('../../pages/DashboardPage');
+const { ProductPage } = require('../../pages/ProductPage');
+const { HeaderComponent } = require('../../components/HeaderComponent');
+const { FooterComponent } = require('../../components/FooterComponent');
 
 test.describe('Page Object Model & Component Object Model Examples', () => {
   

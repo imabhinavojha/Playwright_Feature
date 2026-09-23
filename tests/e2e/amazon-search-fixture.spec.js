@@ -1,4 +1,4 @@
-const { test, expect } = require('../fixtures/amazon.fixture');
+const { test, expect } = require('../../fixtures/amazon.fixture');
 
 test.describe('Amazon search using Playwright fixtures', () => {
   test('go to amazon.in and search', async ({ amazon }) => {

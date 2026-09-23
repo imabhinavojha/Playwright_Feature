@@ -26,9 +26,24 @@ function cleanErrorMessage(msg) {
   return lines.slice(0, 2).join(' | ');
 }
 
-function parseSuites(suites, parentTitle = '', results = { passed: [], failed: [], flaky: [], skipped: [] }) {
-  for (const suite of suites) {
-    const fullTitle = parentTitle ? `${parentTitle} › ${suite.title}` : suite.title;
+// Classify a single test into one of the four canonical statuses
+function getTestStatus(test) {
+  const raw = (test.status || '').toLowerCase();
+  switch (raw) {
+    case 'unexpected': return 'failed';
+    case 'flaky':      return 'flaky';
+    case 'skipped':    return 'skipped';
+    case 'expected':   return 'passed';
+    default:           return 'unknown';
+  }
+}
+
+// Parse the test suites tree and bucket results
+function parseSuites(suites, parentTitle = '') {
+  const results = { passed: [], failed: [], flaky: [], skipped: [] };
+
+  function walk(suite, prefix) {
+    const fullTitle = prefix ? `${prefix} › ${suite.title}` : suite.title;
 
     if (suite.specs) {
       for (const spec of suite.specs) {
@@ -37,11 +52,9 @@ function parseSuites(suites, parentTitle = '', results = { passed: [], failed: [
 
         for (const test of spec.tests || []) {
           const browser = test.projectName || 'default';
-          const status = test.status; // expected, unexpected, flaky, skipped
-
-          // Compute duration and last error
           let totalDuration = 0;
           let errorMessage = '';
+
           for (const res of test.results || []) {
             totalDuration += res.duration || 0;
             if (res.error && res.error.message) {
@@ -57,36 +70,29 @@ function parseSuites(suites, parentTitle = '', results = { passed: [], failed: [
             error: cleanErrorMessage(errorMessage)
           };
 
-          if (status === 'unexpected') {
-            results.failed.push(entry);
-          } else if (status === 'flaky') {
-            results.flaky.push(entry);
-          } else if (status === 'skipped') {
-            results.skipped.push(entry);
-          } else if (status === 'expected') {
-            results.passed.push(entry);
+          const status = getTestStatus(test);
+          if (results[status] !== undefined) {
+            results[status].push(entry);
           }
         }
       }
     }
 
     if (suite.suites) {
-      parseSuites(suite.suites, fullTitle, results);
+      for (const child of suite.suites) {
+        walk(child, fullTitle);
+      }
     }
   }
+
+  for (const suite of suites || []) {
+    walk(suite, parentTitle);
+  }
+
   return results;
 }
 
-function main() {
-  const jsonPath = path.resolve(__dirname, '..', 'test-results', 'report.json');
-  if (!fs.existsSync(jsonPath)) {
-    console.log(`⚠️ JSON report not found at: ${jsonPath}`);
-    return;
-  }
-
-  const rawData = fs.readFileSync(jsonPath, 'utf8');
-  const report = JSON.parse(rawData);
-
+function processReport(report) {
   const results = parseSuites(report.suites || []);
   const stats = report.stats || {};
   const totalTests = results.passed.length + results.failed.length + results.flaky.length + results.skipped.length;
@@ -99,6 +105,37 @@ function main() {
   md += `| Total Tests | Passed 🟢 | Failed ❌ | Flaky ⚠️ | Skipped ⏭️ | Total Duration ⏱️ |\n`;
   md += `| :---: | :---: | :---: | :---: | :---: | :---: |\n`;
   md += `| **${totalTests}** | **${results.passed.length}** | **${results.failed.length}** | **${results.flaky.length}** | **${results.skipped.length}** | **${duration}** |\n\n`;
+
+  // Add donut chart for test outcomes using quickchart.io
+  if (results.passed.length + results.failed.length + results.flaky.length + results.skipped.length > 0) {
+    md += `### 📊 Test Outcome Distribution\n\n`;
+    const chartConfig = {
+      type: 'doughnut',
+      data: {
+        labels: ['Passed 🟢', 'Failed ❌', 'Flaky ⚠️', 'Skipped ⏭️'],
+        datasets: [{
+          data: [results.passed.length, results.failed.length, results.flaky.length, results.skipped.length],
+          backgroundColor: ['#28a745', '#dc3545', '#ffc107', '#6c757d'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: {
+              boxWidth: 12,
+              font: {
+                size: 11
+              }
+            }
+          }
+        },
+        cutout: '65%'
+      }
+    };
+    md += `![Test Outcome Distribution](https://quickchart.io/chart?c=${encodeURIComponent(JSON.stringify(chartConfig))}&backgroundColor=white&width=260&height=150&devicePixelRatio=2)\n\n`;
+  }
 
   // 2. Failed Tests (Open by default)
   if (results.failed.length > 0) {
@@ -157,6 +194,62 @@ function main() {
     console.log('\n--- Generated Markdown Summary ---\n');
     console.log(md);
   }
+}
+
+function main() {
+  // Try multiple possible report locations
+  const possiblePaths = [
+    path.resolve(__dirname, '..', 'test-results', 'report.json'),
+    path.resolve(__dirname, '..', 'test-results', 'report.json', '.last-run.json'),
+    path.resolve(__dirname, '..', 'test-results', 'actual-report.json'),
+    path.resolve(__dirname, '..', 'test-results', 'actual-report.json', '.last-run.json'),
+    path.resolve(__dirname, '..', 'test-results')
+  ];
+
+  let jsonPath = null;
+
+  for (const reportPath of possiblePaths) {
+    if (fs.existsSync(reportPath)) {
+      const stat = fs.statSync(reportPath);
+      if (stat.isFile()) {
+        jsonPath = reportPath;
+        break;
+      } else if (stat.isDirectory()) {
+        // It's a directory, look for .last-run.json inside
+        const lastRunPath = path.join(reportPath, '.last-run.json');
+        if (fs.existsSync(lastRunPath)) {
+          jsonPath = lastRunPath;
+          break;
+        } else {
+          // Look for any JSON file in the directory
+          try {
+            const files = fs.readdirSync(reportPath);
+            const jsonFile = files.find(f => f.endsWith('.json'));
+            if (jsonFile) {
+              jsonPath = path.join(reportPath, jsonFile);
+              break;
+            }
+          } catch (e) {
+            // Continue to next path
+          }
+        }
+      }
+    }
+  }
+
+  if (!jsonPath) {
+    console.log(`⚠️ JSON report not found in any of the expected locations:`);
+    console.log(`  - test-results/report.json`);
+    console.log(`  - test-results/report.json/.last-run.json`);
+    console.log(`  - test-results/actual-report.json`);
+    console.log(`  - test-results/actual-report.json/.last-run.json`);
+    console.log(`  - test-results/ (directory)`);
+    return;
+  }
+
+  const rawData = fs.readFileSync(jsonPath, 'utf8');
+  const report = JSON.parse(rawData);
+  processReport(report);
 }
 
 main();
