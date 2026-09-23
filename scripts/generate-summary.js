@@ -94,21 +94,32 @@ function processReport(report) {
   // Add donut chart for test outcomes using quickchart.io
   if (results.passed.length + results.failed.length + results.flaky.length + results.skipped.length > 0) {
     md += `### 📊 Test Outcome Distribution\n\n`;
-    md += `![Test Outcome Distribution](https://quickchart.io/chart?c=${encodeURIComponent(JSON.stringify({
+    const chartConfig = {
       type: 'doughnut',
       data: {
         labels: ['Passed 🟢', 'Failed ❌', 'Flaky ⚠️', 'Skipped ⏭️'],
         datasets: [{
           data: [results.passed.length, results.failed.length, results.flaky.length, results.skipped.length],
-          backgroundColor: ['#28a745', '#dc3545', '#ffc107', '#6c757d']
+          backgroundColor: ['#28a745', '#dc3545', '#ffc107', '#6c757d'],
+          borderWidth: 0
         }]
       },
       options: {
         plugins: {
-          legend: { position: 'bottom' }
-        }
+          legend: {
+            position: 'bottom',
+            labels: {
+              boxWidth: 12,
+              font: {
+                size: 11
+              }
+            }
+          }
+        },
+        cutout: '65%'
       }
-    }))})\n\n`;
+    };
+    md += `![Test Outcome Distribution](https://quickchart.io/chart?c=${encodeURIComponent(JSON.stringify(chartConfig))}&width=350&height=250)\n\n`;
   }
 
   // 2. Failed Tests (Open by default)
