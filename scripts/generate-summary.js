@@ -26,9 +26,24 @@ function cleanErrorMessage(msg) {
   return lines.slice(0, 2).join(' | ');
 }
 
-function parseSuites(suites, parentTitle = '', results = { passed: [], failed: [], flaky: [], skipped: [] }) {
-  for (const suite of suites) {
-    const fullTitle = parentTitle ? `${parentTitle} › ${suite.title}` : suite.title;
+// Classify a single test into one of the four canonical statuses
+function getTestStatus(test) {
+  const raw = (test.status || '').toLowerCase();
+  switch (raw) {
+    case 'unexpected': return 'failed';
+    case 'flaky':      return 'flaky';
+    case 'skipped':    return 'skipped';
+    case 'expected':   return 'passed';
+    default:           return 'unknown';
+  }
+}
+
+// Parse the test suites tree and bucket results
+function parseSuites(suites, parentTitle = '') {
+  const results = { passed: [], failed: [], flaky: [], skipped: [] };
+
+  function walk(suite, prefix) {
+    const fullTitle = prefix ? `${prefix} › ${suite.title}` : suite.title;
 
     if (suite.specs) {
       for (const spec of suite.specs) {
@@ -37,11 +52,9 @@ function parseSuites(suites, parentTitle = '', results = { passed: [], failed: [
 
         for (const test of spec.tests || []) {
           const browser = test.projectName || 'default';
-          const status = test.status; // expected, unexpected, flaky, skipped
-
-          // Compute duration and last error
           let totalDuration = 0;
           let errorMessage = '';
+
           for (const res of test.results || []) {
             totalDuration += res.duration || 0;
             if (res.error && res.error.message) {
@@ -57,23 +70,25 @@ function parseSuites(suites, parentTitle = '', results = { passed: [], failed: [
             error: cleanErrorMessage(errorMessage)
           };
 
-          if (status === 'unexpected') {
-            results.failed.push(entry);
-          } else if (status === 'flaky') {
-            results.flaky.push(entry);
-          } else if (status === 'skipped') {
-            results.skipped.push(entry);
-          } else if (status === 'expected') {
-            results.passed.push(entry);
+          const status = getTestStatus(test);
+          if (results[status] !== undefined) {
+            results[status].push(entry);
           }
         }
       }
     }
 
     if (suite.suites) {
-      parseSuites(suite.suites, fullTitle, results);
+      for (const child of suite.suites) {
+        walk(child, fullTitle);
+      }
     }
   }
+
+  for (const suite of suites || []) {
+    walk(suite, parentTitle);
+  }
+
   return results;
 }
 
